@@ -22,6 +22,10 @@
         <label for="password" class="form-label">Password:</label>
    <input type="password" class="form-control" id="password" v-model="user.password">
 </div>
+<div class="mb-3">
+      <button type="submit" class="btn btn-dark">Submit</button>
+      <button type="button" class="btn btn-dark" @click="$router.push('/login')">Login</button>
+    </div>
 
 </form>
   
