@@ -1,0 +1,255 @@
+			VUE JS
+			======
+
+Options API
+ 
+export default{ //default object
+data(){
+ 
+return{
+    key:value;
+    key1:value1;
+ 
+}
+ 
+},
+ 
+methods: {
+ 
+ 
+} 
+}
+ 
+ 
+ 
+----------------------
+ 
+v-if vs v-show
+ 
+v-if :- if false take it completely out of dom
+true :- occupies the dom
+ 
+ 
+v-show :- occupies the dom
+true :- display: block
+false :- display:none
+ 
+-----------------------
+ 
+v-on:event - <vue3
+ 
+@event - vue3
+ 
+------------------------
+Event in vue
+ 
+@click =" handleEvent()"
+ 
+The first argument is always event.
+it is an object having type and other properties.
+ 
+If @click =" handleEvent(5)"
+Then the event object will not be called.
+ 
+#to explicitly pass a event
+ 
+@click =  "handleEvent($event,5)"
+ 
+--------------------------
+item of items vs item in items
+ 
+ 
+*"of" vs "in"*
+ 
+- "of" is used for *iterating over values* (e.g., arrays, sets, maps)
+- "in" is used for *iterating over properties* (e.g., objects, strings)
+ 
+*Example 1: Array*
+ 
+- `v-for="item of items"` iterates over the *values* in the array: `[1, 2, 3]`
+- `items` is an array, and `item` takes on the values `1`, `2`, and `3` in each iteration
+ 
+*Example 2: Object*
+ 
+- `v-for="item in items"` iterates over the *properties* in the object: `{a: 1, b: 2, c: 3}`
+- `items` is an object, and `item` takes on the values `1`, `2`, and `3` in each iteration, but also has access to the property names (`a`, `b`, `c`)
+ 
+So, in summary:
+ 
+- Use "of" when you want to iterate over values (arrays, sets, maps)
+- Use "in" when you want to iterate over properties (objects, strings)
+ 
+------------------------------
+v-bind:
+
+simply :
+ 
+-one way data binding
+-is for general attributes v-bind:href
+-for dynamic attribute values
+ 
+*In angular we use [] (property binding)
+v-bind:src is same as [src]
+:src
+-------------------------------
+dynamic classes
+
+-when we want to apply some classes based on Boolean values then we can use dynamic classes
+<li v-if="isFavorite" :class="{fav book.isFav}">
+
+li.fav{
+//give custom css
+}
+
+if the value results to true then this class will be applied to that li tag
+
+------------------------------
+computed properties
+
+-the computed property depends on some data property and when the data property changes then it changes in the computed property also
+
+data(){},
+computed(){
+	functionA(){
+		return 
+	}
+
+},
+
+//template
+<p>{{functionA}}</p>
+
+<template>
+  <div>
+    <p>Original Message: {{ message }} //data</p>
+    <p>Reversed Message: {{ reversedMessage }}//computed</p>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      message: 'Hello, Vue!'
+    };
+  },
+  computed: {
+    reversedMessage() {
+      return this.message.split('').reverse().join('');
+    }
+  }
+};
+</script>
+
+-it does not change the value but updates it.
+
+---------------------------------------------------------------------------
+vue folder structure
+------------------------
+
+-node module : dependencies are stored here
+-public : index.html 
+-src : source code,component,assets
+	-main.js -> js file for kickstart have createApp method
+
+-gitignore: for GitHub
+-babelconfig  
+-package.json
+	
+	"serve": "vue-cli-service serve", to start a development server locally
+	
+-package-lock.json
+
+
+--------------------------------------------------------------------------
+vue component structure:
+
+<template></template>
+<script></script> {optional}
+<style></style> {optional} //global by default 
+and to make it for a particular component make it scoped
+
+//no need to wrap in a single div in template like we use to do in react
+---------------------------------------------------------------------------
+
+template ref
+------------
+
+-replacement of querySelector as it is not present in vue
+<input type="text" ref="name">
+(this.$refs.{{name of the ref}})
+(this.$refs.name)
+this.$refs.name.classList.add('active')
+this.$refs.name.focus()
+---------------------------------------------------------------------------
+
+#Options Api
+------------
+
+export default{
+	name: '',
+	components:{},
+	data(){
+		return{
+			email:'',
+			password:''
+		}	
+},
+	methods(){},
+	computed(){},
+	mounted(){},
+}
+
+disadvantage:-
+
+1)Too much code: Options API requires more code, making it harder to read and write.
+2)Hard to reuse code: It's difficult to share code between components.
+3)Components are tightly connected: Changing one component can affect others.
+4)Less flexible: Options API has a fixed structure, making it harder to customize.
+5)No TypeScript support: It's harder to write safe and error-free code.
+6)Slower performance: Options API can make your app slower.
+7)No built-in reactivity: It's harder to manage dynamic data.
+8)Scalability issues: Options API can become messy as your app grows.
+9)Harder to read: Code is scattered, making it harder to understand.
+10)Maintenance challenges: Changes can have unintended effects on other components.
+
+---------------------------------------------------------------------------
+
+#Composition Api
+----------------
+import {ref} from 'vue'
+export default{
+	setup(){
+		const email = ref('')
+		const password = ref('')
+		
+		return{
+			email,
+			password
+	
+		}
+	}
+
+}
+
+advantage:
+
+1)reusable code
+2)we can group logic in setup function
+3)for larger projects
+4)More flexible: Composition API allows for more customization and flexibility in building components.
+5)Easier code reuse: Composition API makes it easier to share code between components.
+6)Better organization: Composition API helps keep code organized and easy to read.
+7)Improved performance: Composition API can lead to faster performance and better optimization.
+8)Built-in TypeScript support: Composition API supports TypeScript out of the box.
+9)Simplified reactive data management: Composition API makes it easier to manage dynamic data.
+10)Easier maintenance: Composition API makes it easier to maintain and update code.
+11)Better scalability: Composition API is designed to handle large and complex applications.
+12)Improved readability: Composition API leads to more readable and understandable code.
+13)More efficient: Composition API reduces boilerplate code and improves development efficiency.
+
+
+---------------------------------------------------------------------------
+
+
+
