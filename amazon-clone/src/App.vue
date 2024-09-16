@@ -1,15 +1,19 @@
 <template>
-  <navbar-component />
   
+  <navbar-component />
+ <router-view></router-view>
+
 </template>
 
 <script>
 import NavbarComponent from "./components/layout/NavbarComponent.vue";
+//import RegistrationForm from "./components/RegistrationForm.vue"
 
 export default {
   name: "App",
   components: {
-    NavbarComponent,
+    NavbarComponent
+    
   },
 };
 </script>
