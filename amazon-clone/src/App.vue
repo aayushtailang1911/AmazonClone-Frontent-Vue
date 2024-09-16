@@ -1,8 +1,6 @@
 <template>
-  
   <navbar-component />
  <router-view></router-view>
-
 </template>
 
 <script>
