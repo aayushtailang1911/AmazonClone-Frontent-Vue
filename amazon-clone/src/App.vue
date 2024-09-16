@@ -7,7 +7,6 @@
 
 <script>
 import NavbarComponent from "./components/layout/NavbarComponent.vue";
-//import RegistrationForm from "./components/RegistrationForm.vue"
 
 export default {
   name: "App",
