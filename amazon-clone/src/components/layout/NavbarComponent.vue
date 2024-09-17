@@ -36,29 +36,33 @@
         </div>
         <div class="navbar-right-side">
         <ul class="navbar-nav me-auto col-lg-1">
-          <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="#">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="#">Register</a>
-          </li>
-          <!-- <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Dropdown
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <!-- admin navbar -->
+            <ul class="navbar-nav mb-2 mb-lg-0 ms-auto" v-if="isAdmin">
+                <li class="nav-item dropdown me-4">
+             <i class="fa-regular fa-user dropdown-toggle" data-bs-toggle="dropdown"></i>
+            <ul class="dropdown-menu" id="drop1">
+              <li><a class="dropdown-item" href="#">Show Users</a></li>
+              <li><a class="dropdown-item" href="#">Show Products</a></li>
+              <!-- <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li> -->
             </ul>
-          </li> -->
+          </li>
+            </ul>
+            <!-- user navbar -->
+            <ul class="navbar-nav mb-2 mb-lg-0 ms-auto" v-if="isUser">
+                <li class="nav-item me-3"><i class="fa-regular fa-heart"></i></li>
+                <li class="nav-item me-3"><i class="fa-solid fa-cart-shopping"></i></li>
+                <li class="nav-item me-3"><i class="fas fa-user"></i></li>
+            </ul>
+          <li class="nav-item" v-if="!isLoggedIn">
+            <router-link class="nav-link" active-class="active-link" to="/login">Login</router-link>
+          </li>
+          <li class="nav-item" v-if="!isLoggedIn">
+           <router-link class="nav-link" active-class="active-link" to="/register">Register</router-link>
+          </li>
+          <li class="nav-item" v-if="isLoggedIn">
+             <i class="fas fa-sign-out-alt"></i> 
+          </li>
         </ul>
         </div>
       </div>
@@ -76,9 +80,9 @@ export default {
             isLoggedIn:false
         }
     },
-    mounted(){
-        this.checkUser();
-    },
+    // mounted(){
+    //     this.checkUser();
+    // },
     methods:{
         checkUserRole(){
 
@@ -108,5 +112,9 @@ export default {
     height: 65px;
     padding: 5px;
 }
- 
+
+#drop1{
+    left:-70px;
+}
+
 </style>
