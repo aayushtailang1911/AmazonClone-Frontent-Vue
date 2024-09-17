@@ -1,12 +1,13 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-md bg-body-tertiary">
     <div class="container-fluid">
-      <div class="navbar-left-side me-auto col-6 col-md-1">
+      <div class="navbar-left-side  col-sm-6 col-lg-1">
           <img
           class="i1"
-          src="../../assets/amazon.png"
+          src="../../assets/amazon-removebg-preview.png"
           alt="Logo"
         />
+        <!-- toggle button for smaller screens -->
         <button
           class="navbar-toggler"
           type="button"
@@ -34,12 +35,12 @@
           </form>
         </div>
         <div class="navbar-right-side">
-        <ul class="navbar-nav me-auto col-4 col-md-1">
+        <ul class="navbar-nav me-auto col-lg-1">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Login</a>
+            <a class="nav-link " aria-current="page" href="#">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">Register</a>
+            <a class="nav-link " href="#">Register</a>
           </li>
           <!-- <li class="nav-item dropdown">
             <a
@@ -66,12 +67,38 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data(){
+        return{
+            isUser:false,
+            isAdmin:false,
+            isSeller:false,
+            isLoggedIn:false
+        }
+    },
+    mounted(){
+        this.checkUser();
+    },
+    methods:{
+        checkUserRole(){
+
+        },
+        logOut(){
+
+        },
+
+
+
+    }
+
+
+};
 </script>
 
 <style scoped>
 .navbar-right-side{
     margin-right: 20px;
+    font-size: large;
 }
 .navbar-left-side{
     margin-left: -10px;
