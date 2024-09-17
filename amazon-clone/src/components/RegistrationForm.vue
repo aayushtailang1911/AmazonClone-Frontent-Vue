@@ -1,12 +1,15 @@
 <template>
+    
     <form @submit.prevent="toRegister" class="custom-form">
+        <img class="i1" :src="require('@/assets/amazon.png')" alt="Logo" />
+       
        <div class="mb-3">
-        <label for="firstName" class="form-label">FirstName:</label>
+        <label for="firstName" class="form-label">First Name:</label>
    <input type="text" class="form-control" id="firstName" v-model="user.firstName" required>
 </div>
 <div class="mb-3">
-        <label for="lastName" class="form-label">LastName:</label>
-   <input type="text" class="form-control" id="lasName" v-model="user.lasName" >
+        <label for="lastName" class="form-label">Last Name:</label>
+   <input type="text" class="form-control" id="lasName" v-model="user.lastName" >
 </div>
 <div class="mb-3">
         <label for="Email" class="form-label">Email:</label>
@@ -23,6 +26,11 @@
    <input type="password" class="form-control" id="password" v-model="user.password">
 </div>
 <div class="mb-3">
+    <label for="Gender" class="form-label"> Gender:</label><br>
+   <label> <input type="radio" class="form-label" name="gender" value="male" v-model="user.gender">Male</label> &nbsp; &nbsp;
+   <label> <input type="radio" class="form-label" name="gender" value="female" v-model="user.gender">Female</label>
+</div>
+<div class="mb-3">
       <button type="submit" class="btn btn-dark">Submit</button>
       <button type="button" class="btn btn-dark" @click="$router.push('/login')">Login</button>
     </div>
@@ -32,6 +40,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     data(){
         return{
@@ -41,7 +50,8 @@ export default {
         email:'',
         mobileNum:'',
         role:'',
-        password:''
+        password:'',
+        gender:''
     },
     mobileError:'',
     emailError:''
@@ -57,29 +67,45 @@ methods:{
         return regex.test(email);
     },
     async toRegister(){
-        this.mobileNum='';
-        this.emailError='';
+    this.mobileError = '';
+    this.emailError = '';
 
-        if(!this.validateEmail(this.user.email)){
-            this.emailError='Use proper email format';
-            return;
-        }
-
-        if(!this.validateMobileNumber(this.user.mobileNum)){
-            this.mobileError='Mobile Number should be 10 digits';
-            return;
-        }
-
-        const formData=new FormData();
-
-        Object.keys(this.user).forEach(key=>{
-            formData.append(key,this.user[key]);
-        });
-
-       
-
+    if (!this.validateEmail(this.user.email)) {
+        this.emailError = 'Use proper email format';
+        return;
     }
 
+    if (!this.validateMobileNumber(this.user.mobileNum)) {
+        this.mobileError = 'Mobile Number should be 10 digits';
+        return;
+    }
+
+    try {
+        // const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+        //     method: 'POST',
+        //     body: JSON.stringify(this.user),
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        // });
+
+        // const data = await response.json();
+        // console.log('Registration successful:', data);
+        // alert('Registration successful!');
+        const resp= await axios.post('https://jsonplaceholder.typicode.com/users',this.user,{
+            headers:{
+                'Content-Type':'application/json'
+            }
+        });
+        console.log('Registration Successful:',resp.data);
+        alert('Resgistration Successful');
+        
+
+    } catch (error) {
+        console.error('Error during registration:', error);
+        alert('Failed to register');
+    }
+}
 
 }
 
@@ -87,7 +113,11 @@ methods:{
 </script>
 
 <style scoped>
-
+.i1 {
+  display: block;
+  margin: 0 auto 20px; /* Center image and add bottom margin */
+  max-width: 100px; /* Adjust the size as needed */
+}
 
 .custom-form {
   border: 1px solid #ddd;
@@ -99,7 +129,8 @@ methods:{
 }
 
 .custom-form .btn {
-  margin-right: 10px; /* Add spacing between buttons */
+  margin-right: 10px;
+  color: beige; /* Add spacing between buttons */
 }
 
 @media (max-width: 576px) {
@@ -112,5 +143,7 @@ methods:{
 .text-danger {
   color: red; /* Style for error messages */
 }
+
+
 
 </style>
