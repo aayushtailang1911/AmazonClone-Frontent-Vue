@@ -39,7 +39,7 @@
             <!-- admin navbar -->
             <ul class="navbar-nav mb-2 mb-lg-0 ms-auto" v-if="isAdmin">
                 <li class="nav-item dropdown me-4">
-             <i class="fa-regular fa-user dropdown-toggle" data-bs-toggle="dropdown"></i>
+             <i class="fas fa-user dropdown-toggle" data-bs-toggle="dropdown"></i>
             <ul class="dropdown-menu" id="drop1">
               <li><a class="dropdown-item" href="#">Show Users</a></li>
               <li><a class="dropdown-item" href="#">Show Products</a></li>
@@ -61,7 +61,7 @@
            <router-link class="nav-link" active-class="active-link" to="/register">Register</router-link>
           </li>
           <li class="nav-item" v-if="isLoggedIn">
-             <i class="fas fa-sign-out-alt"></i> 
+            <i class="fa-solid fa-share-from-square"></i>
           </li>
         </ul>
         </div>
