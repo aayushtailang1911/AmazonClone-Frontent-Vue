@@ -9,9 +9,9 @@
     </div>
 
     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-      <li class="ms-3"><svg class="bi" width="24" height="24"></svg><i class="fa-brands fa-facebook"></i></li>
-      <li class="ms-3"><svg class="bi" width="24" height="24"></svg><i class="fa-brands fa-instagram"></i></li>
-      <li class="ms-3"><svg class="bi" width="24" height="24"></svg><i class="fa-brands fa-twitter"></i></li>
+      <li class="ms-3"><a href="https://www.facebook.com/AmazonIN/"><svg class="bi" width="24" height="24"></svg><i class="fa-brands fa-facebook"></i></a></li>
+      <li class="ms-3"><a href="https://www.instagram.com/amazondotin/?hl=en"><svg class="bi" width="24" height="24"></svg><i class="fa-brands fa-instagram"></i></a></li>
+      <li class="ms-3"><a href="https://x.com/amazonin"><svg class="bi" width="24" height="24"></svg><i class="fa-brands fa-twitter"></i></a></li>
     </ul>
   </footer>
 </div>
@@ -30,5 +30,8 @@ export default {
   bottom: 0;
   width: 100%;
   text-align: center;
+}
+a{
+    color: grey;
 }
 </style>
